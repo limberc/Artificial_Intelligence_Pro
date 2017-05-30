@@ -1,1 +1,6 @@
-Artificial_Intelligence_Pro
+# This Repo is for artificial intelligence work
+
+TODO:
+
+1. MCTS
+2. AIMA
