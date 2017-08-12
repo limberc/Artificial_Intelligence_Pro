@@ -3,7 +3,9 @@
 
 ## Constructor
 
-    Board.__init__(self, player_1, player_2, width=7, height=7)
+```python
+Board.__init__(self, player_1, player_2, width=7, height=7)
+```
 
 ## Attributes
 
@@ -34,7 +36,7 @@ Counter indicating the number of moves that have been applied to the game
 ## Public Methods
 
 ### apply_move(self, move)
-    
+
 Modify the game object by moving the active player on the game board and disabling the vacated square (if any). The forecast_move method performs the same function, but returns a copy of the board, rather than modifying the state in-place.
 
 ### copy(self)

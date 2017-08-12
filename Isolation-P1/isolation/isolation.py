@@ -88,11 +88,13 @@ class Board(object):
             return self._inactive_player
         elif player == self._inactive_player:
             return self._active_player
-        raise RuntimeError("`player` must be an object registered as a player in the current game.")
+        raise RuntimeError(
+            "`player` must be an object registered as a player in the current game.")
 
     def copy(self):
         """ Return a deep copy of the current board. """
-        new_board = Board(self._player_1, self._player_2, width=self.width, height=self.height)
+        new_board = Board(self._player_1, self._player_2,
+                          width=self.width, height=self.height)
         new_board.move_count = self.move_count
         new_board._active_player = self._active_player
         new_board._inactive_player = self._inactive_player
@@ -215,7 +217,7 @@ class Board(object):
         """ Test whether the specified player has lost the game. """
         return player == self._active_player and not self.get_legal_moves(self._active_player)
 
-    def utility(self, player):
+    def utility(self, player):  
         """Returns the utility of the current game state from the perspective
         of the specified player.
 
@@ -314,15 +316,15 @@ class Board(object):
         """
         move_history = []
 
-        time_millis = lambda: 1000 * timeit.default_timer()
+        def time_millis(): return 1000 * timeit.default_timer()
 
         while True:
-
             legal_player_moves = self.get_legal_moves()
             game_copy = self.copy()
 
             move_start = time_millis()
-            time_left = lambda : time_limit - (time_millis() - move_start)
+
+            def time_left(): return time_limit - (time_millis() - move_start)
             curr_move = self._active_player.get_move(game_copy, time_left)
             move_end = time_left()
 

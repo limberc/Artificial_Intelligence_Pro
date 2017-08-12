@@ -36,38 +36,40 @@ The following example creates a game and illustrates the basic API.  You can run
 
     from isolation import Board
 
-    # create an isolation board (by default 7x7)
-    player1 = RandomPlayer()
-    player2 = GreedyPlayer()
-    game = Board(player1, player2)
+```python
+# create an isolation board (by default 7x7)
+player1 = RandomPlayer()
+player2 = GreedyPlayer()
+game = Board(player1, player2)
 
-    # place player 1 on the board at row 2, column 3, then place player 2 on
-    # the board at row 0, column 5; display the resulting board state.  Note
-    # that the .apply_move() method changes the calling object in-place.
-    game.apply_move((2, 3))
-    game.apply_move((0, 5))
-    print(game.to_string())
+# place player 1 on the board at row 2, column 3, then place player 2 on
+# the board at row 0, column 5; display the resulting board state.  Note
+# that the .apply_move() method changes the calling object in-place.
+game.apply_move((2, 3))
+game.apply_move((0, 5))
+print(game.to_string())
 
-    # players take turns moving on the board, so player1 should be next to move
-    assert(player1 == game.active_player)
+# players take turns moving on the board, so player1 should be next to move
+assert(player1 == game.active_player)
 
-    # get a list of the legal moves available to the active player
-    print(game.get_legal_moves())
+# get a list of the legal moves available to the active player
+print(game.get_legal_moves())
 
-    # get a successor of the current state by making a copy of the board and
-    # applying a move. Notice that this does NOT change the calling object
-    # (unlike .apply_move()).
-    new_game = game.forecast_move((1, 1))
-    assert(new_game.to_string() != game.to_string())
-    print("\nOld state:\n{}".format(game.to_string()))
-    print("\nNew state:\n{}".format(new_game.to_string()))
+# get a successor of the current state by making a copy of the board and
+# applying a move. Notice that this does NOT change the calling object
+# (unlike .apply_move()).
+new_game = game.forecast_move((1, 1))
+assert(new_game.to_string() != game.to_string())
+print("\nOld state:\n{}".format(game.to_string()))
+print("\nNew state:\n{}".format(new_game.to_string()))
 
-    # play the remainder of the game automatically -- outcome can be "illegal
-    # move", "timeout", or "forfeit"
-    winner, history, outcome = game.play()
-    print("\nWinner: {}\nOutcome: {}".format(winner, outcome))
-    print(game.to_string())
-    print("Move history:\n{!s}".format(history))
+# play the remainder of the game automatically -- outcome can be "illegal
+# move", "timeout", or "forfeit"
+winner, history, outcome = game.play()
+print("\nWinner: {}\nOutcome: {}".format(winner, outcome))
+print(game.to_string())
+print("Move history:\n{!s}".format(history))
+```
 
 
 ### Coding
@@ -78,19 +80,19 @@ The primary mechanism for testing your code will be the Udacity Project Assistan
 
 0. Verify that the Udacity-PA tool is installed properly by submitting the project. Run `udacity submit isolation`. (You should see a list of test cases that failed -- that's expected because you haven't implemented any code yet.)
 
-0. Modify the `MinimaxPlayer.minimax()` method to return any legal move for the active player.  Resubmit your code to the project assistant and the minimax interface test should pass.
+1. Modify the `MinimaxPlayer.minimax()` method to return any legal move for the active player.  Resubmit your code to the project assistant and the minimax interface test should pass.
 
-0. Further modify the `MinimaxPlayer.minimax()` method to implement the full recursive search procedure described in lecture (ref. [AIMA Minimax Decision](https://github.com/aimacode/aima-pseudocode/blob/master/md/Minimax-Decision.md)).  Resubmit your code to the project assistant and both the minimax interface and functional test cases will pass.
+2. Further modify the `MinimaxPlayer.minimax()` method to implement the full recursive search procedure described in lecture (ref. [AIMA Minimax Decision](https://github.com/aimacode/aima-pseudocode/blob/master/md/Minimax-Decision.md)).  Resubmit your code to the project assistant and both the minimax interface and functional test cases will pass.
 
-0. Start on the alpha beta test cases. Modify the `AlphaBetaPlayer.alphabeta()` method to return any legal move for the active player.  Resubmit your code to the project assistant and the alphabeta interface test should pass.
+3. Start on the alpha beta test cases. Modify the `AlphaBetaPlayer.alphabeta()` method to return any legal move for the active player.  Resubmit your code to the project assistant and the alphabeta interface test should pass.
 
-0. Further modify the `AlphaBetaPlayer.alphabeta()` method to implement the full recursive search procedure described in lecture (ref. [AIMA Alpha-Beta Search](https://github.com/aimacode/aima-pseudocode/blob/master/md/Alpha-Beta-Search.md)).  Resubmit your code to the project assistant and both the alphabeta interface and functional test cases will pass.
+4. Further modify the `AlphaBetaPlayer.alphabeta()` method to implement the full recursive search procedure described in lecture (ref. [AIMA Alpha-Beta Search](https://github.com/aimacode/aima-pseudocode/blob/master/md/Alpha-Beta-Search.md)).  Resubmit your code to the project assistant and both the alphabeta interface and functional test cases will pass.
 
-0. You can pass the interface test for the `AlphaBetaPlayer.get_move()` function by copying the code from `MinimaxPlayer.get_move()`.  Resubmit your code to the project assistant to see that the `get_move()` interface test case passes.
+5. You can pass the interface test for the `AlphaBetaPlayer.get_move()` function by copying the code from `MinimaxPlayer.get_move()`.  Resubmit your code to the project assistant to see that the `get_move()` interface test case passes.
 
-0. Pass the test_get_move test by modifying `CustomPlayer.get_move()` to implement Iterative Deepening.  See Also [AIMA Iterative Deepening Search](https://github.com/aimacode/aima-pseudocode/blob/master/md/Iterative-Deepening-Search.md)
+6. Pass the test_get_move test by modifying `CustomPlayer.get_move()` to implement Iterative Deepening.  See Also [AIMA Iterative Deepening Search](https://github.com/aimacode/aima-pseudocode/blob/master/md/Iterative-Deepening-Search.md)
 
-0. Finally, pass the heuristic tests by implementing any heuristic in `custom_score()`, `custom_score_2()`, and `custom_score_3()`.  (These test cases only validate the return value type -- it does not check for "correctness" of your heuristic.)  You can see example heuristics in the `sample_players.py` file.
+7. Finally, pass the heuristic tests by implementing any heuristic in `custom_score()`, `custom_score_2()`, and `custom_score_3()`.  (These test cases only validate the return value type -- it does not check for "correctness" of your heuristic.)  You can see example heuristics in the `sample_players.py` file.
 
 
 ### Tournament
